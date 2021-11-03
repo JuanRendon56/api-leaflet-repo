@@ -1,10 +1,35 @@
-import { Component } from '@angular/core';
+import { AppComponent } from './app.component';
+import { TestBed, async } from '@angular/core/testing';
+import { RouterTestingModule} from '@angular/router/testing':
 
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
-})
-export class AppComponent {
-  title = 'angular-leaflet-example';
-}
+decribe('AppComponent', () => {
+	beforeEach(async(() => {
+		TestBed.configureTestingModule({
+			imports: [
+				RouterTestingModule
+			],
+			declarations: [
+				AppComponent
+			],
+		}).compileComponents();
+	}));
+
+	it('should create the app', () => {
+		const fixture = TestBed.createComponent(AppComponent);
+		const app = fixture.componentInstance;
+		expect(app).toBeTruthy();
+	});
+	
+	it(`should have as title 'ng5'`, () => {
+		const fixture = TestBed.createComponent(AppComponent);
+		const app = fixture.componentInstance;
+		expect(app.title).toEqual('ng5');
+	});
+	
+	it('should render title', () => {
+		const fixture = TestBed.createComponent(AppComponent);
+		fixture.detectChanges();
+		const compiled = fixture.nativeElement;
+		expect(compiled.querySelector('.content span').textContent).toContain('ng5 a pp is running!');
+	});
+});
